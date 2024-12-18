@@ -80,10 +80,10 @@
 
 }
 body{
-    background-color: #C0C0C0		;
+    background-color: #fff	;
 }
 .box-busca {
-    background-color:#C0C0C0	;
+    background-color:#fff;
 }
 
 @media screen and (min-width: 400px){
@@ -94,8 +94,60 @@ body{
 
 }
 body{
-    background-color: #C0C0C0		;
+    background-color: #fff		;
 }
 .box-busca {
-    background-color:#C0C0C0	;
+    background-color:#fff	;
 }
+.livro-card {
+    border: 1px solid  #14c0c7;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .livro-card img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .livro-card h3 {
+    margin: 0;
+  }
+  
+  .livro-card p {
+    margin: 4px 0;
+  }
+  
+
+
+  .button {
+    background:#14c0c7;
+    color: #fff;
+    padding: 15px 40px;
+    font-size: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .button:hover {
+    background: #14c0c7;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .button:active {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }

@@ -1,0 +1,55 @@
+.box-busca{ 
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.box-busca h1{
+    color: #4c4c4c;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+
+.comment-box {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .comment-box h2 {
+    margin: 0 0 15px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+
+  .comment-box textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+  }
+
+  .comment-box textarea:focus {
+    border-color: #74ebd5;
+  }
+
+ 
+  
+ 

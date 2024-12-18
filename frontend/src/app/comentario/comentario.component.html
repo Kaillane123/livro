@@ -1,0 +1,35 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+    
+<div class="box-busca" >
+    <h1>AVALIAÇÕES</h1>
+<br><br>
+    <div class="comment-box">
+        <h2>Deixe seu comentário</h2>
+        <div class="comments-list">
+            <div *ngFor="let comentario of comentarios" class="comentarios">
+              <p>{{ comentario.text }}</p>
+              <small>{{ comentario.createdAt | date: 'short' }}</small>
+            </div>
+        </div>
+       
+        <form  class="form" [formGroup]="clienteForm" (ngSubmit)="enviar()">
+        <textarea placeholder="Escreva seu comentário aqui..."  formControlName="text" required></textarea>
+        <div class="form-group"> 
+            <button type="submit" class="btn btn-info btn-md">enviar</button>
+           
+
+            
+        </div>
+    </form>
+
+        
+    </div>
+</div> 
+       
+        
+</body>

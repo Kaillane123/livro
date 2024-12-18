@@ -8,41 +8,47 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  email String @db.VarChar(255)
-  senha String @db.VarChar(100)
+  id         Int           @id @default(autoincrement())
+  email      String        @db.VarChar(255)
+  senha      String        @db.VarChar(100)
   listas_fav Lista_fav[]
   cometarios Comentarios[]
   livro_user Livro_user[]
 }
 
 model Livro {
-  cod Int @id @default(autoincrement())
-  nome String @db.VarChar(255)
-  autor String @db.VarChar(255)
-  genero String @db.VarChar(255)
-  poste String @db.Text
-  listas_fav Lista_fav[]
-  livro_user Livro_user[]
+  cod         String        @id
+  nome        String        @db.VarChar(255)
+  autor       String        @db.VarChar(255)
+  genero      String        @db.VarChar(255)
+  poste       String        @db.Text
+  listas_fav  Lista_fav[]
+  livro_user  Livro_user[]
+  comentarios Comentarios[]
 }
 
 model Lista_fav {
-  id Int @id @default(autoincrement())
-  livro Livro @relation(fields: [livroCod], references: [cod])
-  livroCod  Int 
-  user User @relation(fields: [userId], references: [id])
-  userId Int
+  id       Int    @id @default(autoincrement())
+  livro    Livro  @relation(fields: [livroCod], references: [cod])
+  livroCod String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
 }
-model Comentarios{
-  cod Int @id @default(autoincrement())
-  text String @db.VarChar(200)
-  user User @relation(fields: [userId],references: [id])
-  userId Int
+
+model Comentarios {
+  cod       Int      @id @default(autoincrement())
+  text      String   @db.VarChar(200)
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  livro     Livro    @relation(fields: [livroCod], references: [cod])
+  livroCod  String
+  createdAt DateTime @default(now())
 }
-model Livro_user{
-  id Int @id @default(autoincrement())
-  cod Livro @relation(fields: [livroCod], references: [cod])
-  livroCod Int
-  user User @relation(fields: [userId], references: [id])
-  userId Int 
+
+model Livro_user {
+  id       Int   @id @default(autoincrement())
+  cod      Livro @relation(fields: [livroCod], references: [cod])
+  livroCod String
+  user     User  @relation(fields: [userId], references: [id])
+  userId   Int
 }

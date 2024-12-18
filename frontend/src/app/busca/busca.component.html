@@ -1,39 +1,54 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <body>
 
-       <div class="box-busca">
+       <div class="box-busca" >
               <h1>BUSQUE SEUS LIVROS AQUI!</h1>
-              <br><br>
 
-              <div class="search-box">
-                  
-                  <form method="post" action="#">
-                      <input type="text" class="search-box-input" name="busca" placeholder="Faça sua Pesquisa">
-                      <button class="search-box-button"><i class="search-box-icone icon icon-search"></i></button>
+              <div class="search-box" >
 
-                  </form>
-                  
-                 
-            
-             <!--
-       <input class="form-control" type="text" 
-              name="titulo" id="titulo" formControlName="titulo">
-       <input class="btn btn-info mt-3" type="button" value="Buscar" 
-              [disabled]="formBusca.invalid" (click)="buscar()">
-</div>
-          
-</div>
+                     <form [formGroup]="formBusca" (ngSubmit)="buscar()">
+                            <input type="text" class="search-box-input" name="busca" formControlName="termo"
+                                   placeholder="Faça sua Pesquisa">
+                            <button class="search-box-button" type="submit" [disabled]="formBusca.invalid"><i
+                                          class="search-box-icone icon icon-search"></i></button>
+                     </form>
 
-<div *ngIf="filmes && filmes.length > 0"  class="filmes">
-<div *ngFor="let filme of filmes">
-     <img [src]="filme.Poster" alt="Poster">
-       <div class="card-body">
-              <h5 class="card-title">{{filme.Title}}</h5>
-              <ul class="card-text">
-                 <li>Diretor: {{filme.Director}}</li>
-                 <li>Ano: {{filme.Year}}</li>
-                 <li>Gênero: {{filme.Genre}}</li>
-              </ul>
-       </div>-->
-</div>
-</div>
+
+
+                     <div *ngIf="livros.length > 0" class="grid gap-5 p-4">
+
+                            <div *ngFor="let livro of livros" class="d-flex flex-row card p-2 m-2">
+                                   <img [src]="livro.Imagem" alt="capa do livro" class="img-thumbnail m-auto"
+                                          width="200" />
+                                   <div class="ml-1">
+                                          <p class="h5" style="color:#4c4c4c">{{ livro.Titulo }}</p>
+                                          <p><strong>Autor(es):</strong> {{ livro.Autor }}</p>
+
+                                          <p><strong>Descrição:</strong> {{ livro.Descri }}</p>
+                                          <div class="text-bg-info p-3">
+                                                 <a role="button" class="button" [routerLink]="'/livros/' + livro.Cod + '/comentarios'">Comentários</a>
+                                                 <div class="text-bg-info p-4">
+                                                        <a role="button" class="button" routerLink="favoritos"
+                                                               (click)="comentario()">Favoritar</a>
+                                                 </div>
+
+                                          </div>
+
+
+                                   </div>
+
+
+                                   <div *ngIf="livros.length === 0 && formBusca.dirty">
+                                          <p>Nenhum livro encontrado.</p>
+
+
+                                   </div>
+                            </div>
+                     </div>
+              </div>
+       </div>
 </body>

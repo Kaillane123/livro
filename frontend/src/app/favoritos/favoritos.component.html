@@ -1,0 +1,11 @@
+<div class="favoritos-container">
+    <h1>Meus Favoritos</h1>
+    <ul>
+      <li *ngFor="let favorito of favoritos">
+        <span>{{ favorito.titulo }}</span>
+        <button (click)="adicionarFavorito(favorito._id)">Favoritar</button>
+        
+      </li>
+    </ul>
+  </div>
+  

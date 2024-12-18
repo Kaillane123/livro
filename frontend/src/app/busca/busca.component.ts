@@ -1,35 +1,46 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LivroService } from '../livro.service';
+import { Livro } from '../livro';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-busca',
   templateUrl: './busca.component.html',
-  styleUrl: './busca.component.css'
+  styleUrls: ['./busca.component.css'] 
 })
 export class BuscaComponent {
-  /*
-  formBusca: FormGroup
-  //filme: Filme | undefined 
-  filmes: Filme[]
-  constructor(private fb: FormBuilder, 
-              private fs: FilmeService
-  ) {
+  formBusca: FormGroup;
+  livros: Livro[]; 
+
+  constructor(private fb: FormBuilder, private livroService: LivroService, private router: Router) {
     this.formBusca = this.fb.group({
-      titulo: ['', [Validators.required, 
-                    Validators.minLength(2)]
-              ]
-    })
+      termo: ['', [Validators.required, Validators.minLength(2)]]
+    });
 
-    this.filmes = []
+    this.livros = [];
   }
-  buscar() {
-    const titulo = this.formBusca.value.titulo
-    this.fs.buscarFilmesPorTitulo(titulo).subscribe(
-      res => {
-        this.filmes = res.Search
-      }
-    )
+  comentario = () => {
+    this.router.navigate(['/comentario']);
+  }
+ 
 
-}
-*/
+  buscar(): void {
+    const termo = this.formBusca.value.termo; 
+    this.livroService.buscarLivros(termo).subscribe(
+      (res) => {
+        // Mapeia a resposta da API para o modelo de Livro
+        this.livros = res.items.map((item: any) => ({
+          Cod: item.id,
+          Titulo: item.volumeInfo.title,
+          Autor: item.volumeInfo.authors,
+          Descri: item.volumeInfo.description,
+          Imagem: item.volumeInfo.imageLinks?.thumbnail
+        }));
+      },
+      (err) => {
+        console.error('Erro ao buscar livros:', err);
+      }
+    );
+  }
 }
